@@ -32,6 +32,9 @@ class Game{
                 if (tmp <= 100 && tmp >= 55)
                 {
                     this->home_team_points = tmp;
+                    // add points base on talent
+                    this->home_team_points += this->home_team->get_talent()*10;
+                    this->home_team->set_points_scored(this->home_team_points);
                     break;
                 }
             }
@@ -40,9 +43,15 @@ class Game{
                 if (tmp <= 100 && tmp >= 50)
                 {
                     this->away_team_points = tmp;
+                    // add points base on talent
+                    this->away_team_points += this->away_team->get_talent()*10;
+                    this->away_team->set_points_scored(this->away_team_points);
                     break;
                 }
             }
+            // add points against for each team
+            this->away_team->set_points_against(this->home_team_points);
+            this->home_team->set_points_against(this->away_team_points);
         }
 
         ~Game(){}

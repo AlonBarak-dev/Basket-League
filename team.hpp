@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <stdlib.h>
 
 class Team{
 
@@ -25,6 +26,25 @@ class Team{
             this->num_of_points_against = other->num_of_points_against;
             this->num_of_points_scored = other->num_of_points_scored;
         }
+
+        Team(){
+            // generate random name
+            std::string name;
+            int var;
+            char random_char;
+            for (size_t i = 0; i < 6; i++)
+            {
+                var = rand()%25 +1;
+                random_char = 65 + var;
+                name.push_back(random_char);
+            }
+            this->team_name = name;
+            this->talent_level = (rand() % 100) / 100;
+            this->num_of_wins = 0;
+            this->num_of_points_against = 0;
+            this->num_of_points_scored = 0;
+
+        }
         
         ~Team(){}
 
@@ -34,5 +54,8 @@ class Team{
         int get_wins();
         int get_points_scored();
         int get_points_against();
+        void set_points_scored(int points);
+        void set_points_against(int points);
+        void add_win();
 
 };
