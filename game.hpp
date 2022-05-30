@@ -1,6 +1,9 @@
 #pragma once 
 #include "team.hpp"
-
+#include <iomanip>
+#include <map>
+#include <random>
+#include <cmath>
 
 class Game{
 
@@ -10,15 +13,36 @@ class Game{
         int home_team_points;
         int away_team_points;
         std::string winner;
+        std::random_device rd{};
+        std::mt19937 gen{rd()};
+        // values near the mean are the most likely
+        // standard deviation affects the dispersion of generated values from the mean
+        std::normal_distribution<> distro{75,20};
     
     public:
 
-        Game(Team& home, Team& away) : home_team(home), away_team(away){
-            // need to calculate points base on Normal distrobution.
-            this->home_team_points = 0;
-            this->away_team_points = 0;
+        Game(Team* home, Team* away){
 
-            this->winner = home_team.get_name();
+            this->home_team = home;
+            this->away_team = away;
+            // need to calculate points base on Normal distrobution.
+            int tmp;
+            while(true){
+                tmp = std::round(this->distro(this->gen));
+                if (tmp <= 100 && tmp >= 55)
+                {
+                    this->home_team_points = tmp;
+                    break;
+                }
+            }
+            while(true){
+                tmp = std::round(this->distro(this->gen));
+                if (tmp <= 100 && tmp >= 50)
+                {
+                    this->away_team_points = tmp;
+                    break;
+                }
+            }
         }
 
         ~Game(){}
@@ -27,4 +51,4 @@ class Game{
         Team* get_away_team();
         Team* get_winner();
 
-}
+};

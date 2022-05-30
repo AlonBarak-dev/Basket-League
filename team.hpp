@@ -18,12 +18,12 @@ class Team{
                                                num_of_points_against(0), 
                                                num_of_points_scored(0){}
 
-        Team(const Team& other){
-            this->team_name = other.team_name;
-            this->talent_level = other.talent_level;
-            this->num_of_wins = other.num_of_wins;
-            this->num_of_points_against = other.num_of_points_against;
-            this->num_of_points_scored = other.num_of_points_scored;
+        Team(Team* other){
+            this->team_name = other->team_name;
+            this->talent_level = other->talent_level;
+            this->num_of_wins = other->num_of_wins;
+            this->num_of_points_against = other->num_of_points_against;
+            this->num_of_points_scored = other->num_of_points_scored;
         }
         
         ~Team(){}
