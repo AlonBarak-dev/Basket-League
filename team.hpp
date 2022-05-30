@@ -12,11 +12,19 @@ class Team{
 
     public:
 
-        Team(std::string name, float talent) : team_name(name),
+        Team(const std::string& name, const float& talent) : team_name(name),
                                                talent_level(talent), 
                                                num_of_wins(0), 
                                                num_of_points_against(0), 
                                                num_of_points_scored(0){}
+
+        Team(const Team& other){
+            this->team_name = other.team_name;
+            this->talent_level = other.talent_level;
+            this->num_of_wins = other.num_of_wins;
+            this->num_of_points_against = other.num_of_points_against;
+            this->num_of_points_scored = other.num_of_points_scored;
+        }
         
         ~Team(){}
 
