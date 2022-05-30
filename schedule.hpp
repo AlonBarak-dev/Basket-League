@@ -6,12 +6,12 @@
 class Schedule{
 
     private:
+        std::unordered_map<int, Game[10]> schedule_table;
 
-        std::unordered_map<int, std::unordered_map<Team, Team>> schedule_table;
-        
+    public:
 
+        Schedule(){}
+        ~Schedule(){}
 
-
-
-
-}
+        std::unordered_map<int, Game[10]> create_schedule(std::unordered_map<Team*, int>&);
+};
