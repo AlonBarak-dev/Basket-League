@@ -1,6 +1,3 @@
-
-
-
 main: main.o league.o schedule.o game.o team.o
 	clang++-9 main.o league.o schedule.o game.o team.o -o main
 

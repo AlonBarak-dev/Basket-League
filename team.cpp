@@ -18,6 +18,10 @@ Team::Team(){
     this->num_of_wins = 0;
     this->num_of_points_against = 0;
     this->num_of_points_scored = 0;
+    this->win_streak = 0;
+    this->loss_streak = 0;
+    this->max_win_streak = 0;
+    this->max_loss_streak = 0;
 
 }
 
@@ -41,7 +45,28 @@ void Team::set_points_against(int points){
 
 void Team::add_win(){
     this->num_of_wins++;
+    this->win_streak++;
+    if (this->loss_streak > this->max_loss_streak)
+    {
+        this->max_loss_streak = this->loss_streak;
+    }
+    this->loss_streak = 0;
 }
+
+void Team::add_loss(){
+    this->loss_streak++;
+    if (this->win_streak > this->max_win_streak)
+    {
+        this->max_win_streak = this->win_streak;
+    }
+    this->win_streak = 0;
+}
+
+int Team::get_loss_streak() {return this->max_loss_streak;}
+
+int Team::get_win_streak() {return this->max_win_streak;}
+
+
 
 bool operator<(const Team& team1, const Team& team2){
 

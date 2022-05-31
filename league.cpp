@@ -90,3 +90,26 @@ vector<Team*> League::get_leaders(int number_of_teams){
 
     return leaders_vec;
 }
+
+
+int League::win_streak(){
+
+    int max_streak = 0;
+    for(auto& it : this->league_table){
+        if(it.first->get_win_streak() > max_streak){
+            max_streak = it.first->get_win_streak();
+        }
+    }
+    return max_streak;
+}
+
+int League::loss_streak(){
+    
+    int loss_streak = 0;
+    for(auto& it : this->league_table){
+        if(it.first->get_loss_streak() > loss_streak){
+            loss_streak = it.first->get_loss_streak();
+        }
+    }
+    return loss_streak;
+}

@@ -41,12 +41,14 @@ Game::Game(Team* home, Team* away){
         // home team won
         this->winner = this->home_team->get_name();
         this->home_team->add_win();
+        this->away_team->add_loss();
     }
     else if (this->home_team_points < this->away_team_points)
     {
         // away team won
         this->winner = this->away_team->get_name();
         this->away_team->add_win();
+        this->home_team->add_loss();
     }
     else{
         // its a tie, will be decide base on talent level
@@ -55,11 +57,13 @@ Game::Game(Team* home, Team* away){
             // home team won
             this->winner = this->home_team->get_name();
             this->home_team->add_win();
+            this->away_team->add_loss();
         }
         else{
             // away team won
             this->winner = this->away_team->get_name();
             this->away_team->add_win();
+            this->home_team->add_loss();
         }
     }
     
