@@ -40,5 +40,6 @@ class Team{
         void set_points_scored(int points);
         void set_points_against(int points);
         void add_win();
+        friend bool operator<(const Team&, const Team&);
 
 };

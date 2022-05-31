@@ -42,3 +42,14 @@ void Team::set_points_against(int points){
 void Team::add_win(){
     this->num_of_wins++;
 }
+
+bool operator<(const Team& team1, const Team& team2){
+
+    if (team1.num_of_wins == team2.num_of_wins)
+    {
+        int diff1 = team1.num_of_points_scored - team1.num_of_points_against;
+        int diff2 = team2.num_of_points_scored - team2.num_of_points_against;
+        return diff1 < diff2;
+    }
+    return team1.num_of_wins < team2.num_of_wins;
+}

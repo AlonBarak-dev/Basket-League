@@ -26,6 +26,7 @@ class League{
 
         std::unordered_map<Team*, int> get_table();
         void sort_table();
+        friend std::ostream &operator<<(std::ostream& output, const League& l1);
 
 
 };
