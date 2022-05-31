@@ -70,5 +70,23 @@ std::ostream &operator<<(std::ostream& output, const League& l1){
         output << it.first->get_name() << "--" <<it.first->get_wins()<< endl;
     }
     return output;
+}
 
+vector<Team*> League::get_leaders(int number_of_teams){
+    /**
+     * @brief this method return the number_of_teams that are the leaders 
+     * of the league.
+     */
+
+    vector<Team*> leaders_vec;
+
+    for(auto& it : this->league_table){
+        if(number_of_teams == 0){
+            break;
+        }
+        leaders_vec.push_back(it.first);
+        number_of_teams--;
+    }
+
+    return leaders_vec;
 }
