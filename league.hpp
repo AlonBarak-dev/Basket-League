@@ -30,5 +30,7 @@ class League{
         std::vector<Team*> get_leaders(int);
         int win_streak();
         int loss_streak();
+        int num_of_efficient_teams();
+        
 
 };

@@ -113,3 +113,13 @@ int League::loss_streak(){
     }
     return loss_streak;
 }
+
+int League::num_of_efficient_teams(){
+    int counter = 0;
+    for(auto& it : this->league_table){
+        if(it.first->get_points_scored() - it.first->get_points_against() > 0){
+            counter++;
+        }
+    }
+    return counter;
+}
