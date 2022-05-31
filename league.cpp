@@ -65,9 +65,10 @@ std::ostream &operator<<(std::ostream& output, const League& l1){
     /**
      * @brief this method print the league table after the season ends
      */
-    
+    int idx = 1;
     for(auto& it : l1.league_table){
-        output << it.first->get_name() << "--" <<it.first->get_wins()<< endl;
+        output << idx << ". " << it.first->get_name() << "--" <<it.first->get_wins()<< endl;
+        idx++;
     }
     return output;
 }
@@ -122,4 +123,31 @@ int League::num_of_efficient_teams(){
         }
     }
     return counter;
+}
+
+Team* League::scored_most(){
+
+    Team* best_team;
+    int score = 0;
+    for(auto& it : this->league_table){
+        if(it.first->get_points_scored() > score){
+            best_team = it.first;
+            score = best_team->get_points_scored();
+        }
+    }
+    return best_team;
+}
+
+Team* League::least_scored_against(){
+
+    Team* best_team;
+    int score = 38000;      // maximum
+
+    for(auto& it : this->league_table){
+        if(it.first->get_points_against() < score){
+            best_team = it.first;
+            score = best_team->get_points_against();
+        }
+    }
+    return best_team;
 }
