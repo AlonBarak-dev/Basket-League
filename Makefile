@@ -14,6 +14,8 @@ SOURCES=$(wildcard $(SOURCE_PATH)/*.cpp)
 HEADERS=$(wildcard $(SOURCE_PATH)/*.hpp)
 OBJECTS=$(subst sources/,objects/,$(subst .cpp,.o,$(SOURCES)))
 
+main: main.o sources/league.o sources/schedule.o sources/game.o sources/team.o
+	$(CXX) -g $(CXXFLAGS) $^ -o $@
 
 test: $(OBJECTS)
 	$(CXX) -g $(CXXFLAGS) $^ -o $@
@@ -32,4 +34,4 @@ valgrind: test
 	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./test 2>&1 | { egrep "lost| at " || true; }
 
 clean:
-	rm -f $(OBJECTS) *.o main* 
+	rm -f $(OBJECTS) *.o main test

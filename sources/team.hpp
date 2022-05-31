@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <stdlib.h>
+#include <stdexcept>
 
 class Team{
 
@@ -25,7 +26,13 @@ class Team{
                                                win_streak(0),
                                                loss_streak(0),
                                                max_win_streak(0),
-                                               max_loss_streak(0){}
+                                               max_loss_streak(0){
+                                                   if (talent > 1)
+                                                   {
+                                                       throw std::invalid_argument("talent level should be between 0 to 1");
+                                                   }
+                                                   
+                                               }
 
         Team(Team* other){
             this->team_name = other->team_name;
