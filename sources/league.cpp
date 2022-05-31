@@ -18,6 +18,11 @@ League::League(vector<Team*> teams){
         }
     }
     else{
+        for(Team* t : teams){
+            // initialize the league table
+            this->league_table.insert({t,0});
+            this->names.push_back(t->get_name());
+        }
         while(new_teams > 0){
             Team* tmp = new Team();
             this->league_table.insert({tmp,0});
@@ -26,6 +31,7 @@ League::League(vector<Team*> teams){
         }
     }
     // create a schedule for the league
+    this->schedule = new Schedule;
     this->schedule->create_schedule(this->league_table);
 
     // sort the table base on results
