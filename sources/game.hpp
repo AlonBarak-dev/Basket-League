@@ -17,7 +17,7 @@ class Game{
         std::mt19937 gen{rd()};
         // values near the mean are the most likely
         // standard deviation affects the dispersion of generated values from the mean
-        std::normal_distribution<> distro{75,20};
+        std::normal_distribution<> distro{75,25};
     
     public:
 

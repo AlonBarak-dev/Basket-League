@@ -12,6 +12,7 @@ League::League(vector<Team*> teams){
     {
         // no need for random teams
         for(Team* t : teams){
+            
             // initialize the league table
             this->league_table.insert({t,0});
             this->names.push_back(t->get_name());
@@ -52,7 +53,7 @@ void League::sort_table(){
         list[index] = it.first;
         index++;
     }
-    
+    // bubble sort the array
     int i, j;
     for (i = 0; i < 20; i++){
  
@@ -100,6 +101,9 @@ vector<Team*> League::get_leaders(int number_of_teams){
 
 
 int League::win_streak(){
+    /**
+     * @brief this method return the longest win streak in the League
+     */
 
     int max_streak = 0;
     for(auto& it : this->league_table){
@@ -111,6 +115,9 @@ int League::win_streak(){
 }
 
 int League::loss_streak(){
+    /**
+     * @brief this method return th elongest loss atreak in the league
+     */
     
     int loss_streak = 0;
     for(auto& it : this->league_table){
@@ -122,6 +129,10 @@ int League::loss_streak(){
 }
 
 int League::num_of_efficient_teams(){
+    /**
+     * @brief this method return the number of teams that scored more than 
+     * conceded
+     */
     int counter = 0;
     for(auto& it : this->league_table){
         if(it.first->get_points_scored() - it.first->get_points_against() > 0){
@@ -132,6 +143,10 @@ int League::num_of_efficient_teams(){
 }
 
 Team* League::scored_most(){
+    /**
+     * @brief this method return the team that scored the most points in the season
+     * 
+     */
 
     Team* best_team;
     int score = 0;
@@ -145,6 +160,10 @@ Team* League::scored_most(){
 }
 
 Team* League::least_scored_against(){
+    /**
+     * @brief this method return the team that conceded the least points in the season
+     * 
+     */
 
     Team* best_team;
     int score = 38000;      // maximum
