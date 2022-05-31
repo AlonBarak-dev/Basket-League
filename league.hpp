@@ -11,6 +11,7 @@ class League{
     private:
         std::unordered_map<Team*, int> league_table;
         std::vector<std::string> names;
+        Schedule* schedule;
     
     public:
 
@@ -24,6 +25,7 @@ class League{
 
 
         std::unordered_map<Team*, int> get_table();
+        void sort_table();
 
 
 };

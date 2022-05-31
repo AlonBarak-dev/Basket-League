@@ -2,6 +2,24 @@
 
 using namespace std;
 
+Team::Team(){
+    // generate random name
+    string name = "";
+    int var;
+    char random_char;
+    for (size_t i = 0; i < 6; i++)
+    {
+        var = rand()%25 +1;
+        random_char = 65 + var;
+        name += random_char;
+    }
+    this->team_name = name;
+    this->talent_level = (float) rand() / RAND_MAX;
+    this->num_of_wins = 0;
+    this->num_of_points_against = 0;
+    this->num_of_points_scored = 0;
+
+}
 
 string Team::get_name(){return this->team_name;}
 

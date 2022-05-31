@@ -6,12 +6,13 @@
 class Schedule{
 
     private:
-        std::unordered_map<int, Game[10]> schedule_table;
+        std::unordered_map<int, std::vector<Game*>>* schedule_table;
 
     public:
 
         Schedule(){}
         ~Schedule(){}
 
-        std::unordered_map<int, Game[10]> create_schedule(std::unordered_map<Team*, int>&);
+        void create_schedule(std::unordered_map<Team*, int>&);
+        int find_round(Team* , Team*, std::unordered_map<int, std::vector<Game*>>*);
 };
