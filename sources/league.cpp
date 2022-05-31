@@ -7,30 +7,23 @@ League::League(vector<Team*> teams){
     
     // number of teams that should be randomly created
     int new_teams = 20 - teams.size();
-
-    if (new_teams == 0)
-    {
-        // no need for random teams
-        for(Team* t : teams){
-            
-            // initialize the league table
-            this->league_table.insert({t,0});
-            this->names.push_back(t->get_name());
+    for(Team* t : teams){
+        for(string name : this->names){
+            if(t->get_name() == name){
+                throw invalid_argument("2 Teams cannot share same name");
+            }
         }
+        // initialize the league table
+        this->league_table.insert({t,0});
+        this->names.push_back(t->get_name());
     }
-    else{
-        for(Team* t : teams){
-            // initialize the league table
-            this->league_table.insert({t,0});
-            this->names.push_back(t->get_name());
-        }
-        while(new_teams > 0){
-            Team* tmp = new Team();
-            this->league_table.insert({tmp,0});
-            this->names.push_back(tmp->get_name());
-            new_teams--;
-        }
+    while(new_teams > 0){
+        Team* tmp = new Team();
+        this->league_table.insert({tmp,0});
+        this->names.push_back(tmp->get_name());
+        new_teams--;
     }
+    
     // create a schedule for the league
     this->schedule = new Schedule;
     this->schedule->create_schedule(this->league_table);

@@ -3,7 +3,23 @@
 #include <iostream>
 using namespace std;
 
-TEST_CASE("BUILD"){
+
+TEST_CASE("BUILD TEAM"){
+    
+    string name1 = "Maccabi Tel-Aviv";
+    string name2 = "Hapoel Tel-Aviv";
+
+    Team* t1 = new Team{name1, 0.95};
+    Team* t2 = new Team{name2, 0.3};
+
+    CHECK_EQ(t1->get_name(), name1);
+    CHECK_EQ(t2->get_name(), name2);
+    CHECK(t1->get_talent() > t2->get_talent());
+
+}
+
+
+TEST_CASE("BUILD LEAGUE"){
 /**
  * @brief in this test case we confirm that all 3 ways of
  * creating a League are working.
@@ -216,8 +232,5 @@ TEST_CASE("EFFICIENT TEAMS"){
     }
 
     CHECK_EQ(l2.num_of_efficient_teams(), num_of_effi_teams);
-
-
-
 
 }
