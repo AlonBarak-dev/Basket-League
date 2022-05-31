@@ -94,6 +94,26 @@ TEST_CASE("BUILD"){
     CHECK(no_random.get_table().size() == 20);
     CHECK_FALSE(no_random.get_leaders(1).empty());
 
-
-
 }
+
+
+TEST_CASE("GET_LEADERS"){
+
+
+    League l1;
+    // check that there is a winner
+    CHECK_NOTHROW(l1.get_leaders(1));
+    // check that the higest number of wins belong to the league leader
+    int max_wins = 0;
+    for(auto& it : l1.get_table()){
+        if (it.first->get_wins() > max_wins)
+        {
+            max_wins = it.first->get_wins();
+        }
+    }
+    CHECK_EQ(max_wins, l1.get_leaders(1).at(0)->get_wins());
+
+    // check that the method return the exact number of teams as requested
+    CHECK_EQ(10, l1.get_leaders(10).size());
+}
+
